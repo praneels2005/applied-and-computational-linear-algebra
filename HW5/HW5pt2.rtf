@@ -1,0 +1,191 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2761
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww12420\viewh18340\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs24 \cf0 7)\
+\
+a)
+\f1\b0 \
+\
+>> [U,S,V] = svd(A)\
+\
+U =\
+\
+      -1/2            1/2          797/1128       245/8816  \
+      -1/2           -1/2          245/8816      -797/1128  \
+      -1/2            1/2         -797/1128      -245/8816  \
+      -1/2           -1/2         -245/8816       797/1128  \
+\
+\
+S =\
+\
+    1351/195          0              0       \
+       0           3363/1189         0       \
+       0              0              *       \
+       0              0              0       \
+\
+\
+V =\
+\
+    -780/1351      -985/1393      -881/2158  \
+    -780/1351       985/1393      -881/2158  \
+    -780/1351         *            881/1079\
+\
+>> U = U'\
+\
+U =\
+\
+      -1/2           -1/2           -1/2           -1/2     \
+       1/2           -1/2            1/2           -1/2     \
+     797/1128       245/8816      -797/1128      -245/8816  \
+     245/8816      -797/1128      -245/8816       797/1128  \
+\
+>> U_pinv = U(1:2,:)\
+\
+U_pinv =\
+\
+      -1/2           -1/2           -1/2           -1/2     \
+       1/2           -1/2            1/2           -1/2\
+\
+>> V_pinv = V(:,1:2)\
+\
+V_pinv =\
+\
+    -780/1351      -985/1393  \
+    -780/1351       985/1393  \
+    -780/1351         *  \
+\
+>> S_pinv =  inv(S(1:2,1:2))\
+\
+S_pinv =\
+\
+     195/1351         0       \
+       0           1189/3363\
+\
+>> A_pinv = V_pinv*S_pinv*U_pinv\
+\
+A_pinv =\
+\
+      -1/12           1/6           -1/12           1/6     \
+       1/6           -1/12           1/6           -1/12    \
+       1/24           1/24           1/24           1/24  \
+\
+
+\f0\b b)
+\f1\b0 \
+\
+>> x_ls = A_pinv*b\
+\
+x_ls =\
+\
+      -5/6     \
+      11/12    \
+       1/24 \
+\
+
+\f0\b c)
+\f1\b0 \
+\
+>> norm(b-A*x_ls)\
+\
+ans =\
+\
+   1.581138830084190\
+\
+
+\f0\b Yes, this residual is consistent with the other residuals obtained for the other least squares solutions\
+\
+d)\
+
+\f1\b0 >> norm([-5/6; 11/12; 1/24])\
+\
+ans =\
+\
+   1.239539565053626\
+>> norm([-21/16; 7/16; 1])\
+\
+ans =\
+\
+   1.707062535468458\
+>> norm([-29/16; -1/16; 2])\
+\
+ans =\
+\
+   2.699826383306897\
+\
+>> norm([-45/16; -17/16; 4])\
+\
+ans =\
+\
+   5.003904725312024\
+\
+
+\f0\b The norm of the least square solution obtained corresponding to the pseudoinverse is the minimum norm. This should be expected, because the particular solution is the unique solution among all possible least square solutions. Additionally, according to theorem 6, the pseudo-inverse yields the least squares solution with the smallest Euclidean norm, which minimizes the length of the solution vector while still fitting the data as closely as possible.
+\f1\b0 \
+
+\f0\b \
+8)\
+\
+a)\
+\
+
+\f1\b0 >> A = [-1;3;-2]\
+\
+A =\
+\
+    -1\
+     3\
+     -2\
+\
+>> inv(A'*A)*A'\
+\
+ans =\
+\
+      -1/14           3/14           -1/7 \
+\
+
+\f0\b b)
+\f1\b0 \
+\
+>> A = [3 1 -2]\
+\
+A =\
+\
+       3              1             -2 \
+\
+>> A_pinv = A'*inv(A*A')\
+\
+A_pinv =\
+\
+       3/14    \
+       1/14    \
+      -1/7\
+\
+
+\f0\b c)\
+
+\f1\b0 \
+
+\f0\b \
+
+\f1\b0 >> A= [1 2 2; 1 3 1]\
+\
+A =\
+\
+       1              2              2       \
+       1              3              1       \
+\
+>> A_pinv = A'*inv(A*A')\
+\
+A_pinv =\
+\
+       1/9            0       \
+      -5/18           1/2     \
+      13/18          -1/2 \
+
+\f0\b \
+\
+ }
